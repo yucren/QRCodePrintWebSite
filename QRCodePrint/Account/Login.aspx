@@ -16,12 +16,13 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
+                   
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">电子邮件</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">用户名</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
+                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="“电子邮件”字段是必填字段。" />
+                                CssClass="text-danger" ErrorMessage="“用户名”字段是必填字段。" />
                         </div>
                     </div>
                     <div class="form-group">

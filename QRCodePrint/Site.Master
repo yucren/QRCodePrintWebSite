@@ -7,17 +7,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - 我的 ASP.NET 应用程序</title>
+    <title><%: Page.Title %> - 中国龙工二维码打印平台</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+     <style>
+        html,body{
+            margin:0;
+            padding:0;
+            width:100%;
+            height:100%;
+        }
 
+
+    </style>
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" style="width:100%;">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -37,6 +46,11 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+         <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/easyuijs") %>     
+        <%:Styles.Render("~/easyuicss") %>
+            <script src="Scripts/Common2.js"></script>
+        </asp:PlaceHolder>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -46,13 +60,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">应用程序名称</a>
+                    <a class="navbar-brand" runat="server" href="~/">中国龙工二维码打印平台</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">主页</a></li>
-                        <li><a runat="server" href="~/About">关于</a></li>
-                        <li><a runat="server" href="~/Contact">联系方式</a></li>
+                      <%--  <li><a runat="server" href="~/">主页</a></li>--%>
+                       <%-- <li><a runat="server" href="~/About">关于</a></li>--%>
+                        <li><a runat="server" href="~/Contact">联系我们</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -63,9 +77,9 @@
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">您好, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="退出" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
@@ -73,14 +87,35 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+       <div class="container body-content" >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - 我的 ASP.NET 应用程序</p>
-            </footer>
+          
+         
         </div>
     </form>
+      <div id="goodluck" class="container body-content" >
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer style="position:relative;bottom:10px">
+                <p>&copy; <%: DateTime.Now.Year %> - 中国龙工控股有限公司</p>
+            </footer>
+        </div>
+    <style>
+        @media screen  {
+
+            #goodluck{
+
+                padding-top:50px;
+                width:100%;
+                height:100%;
+            }
+        }
+
+
+    </style>   
 </body>
+
+    
 </html>

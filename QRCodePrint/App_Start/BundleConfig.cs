@@ -13,6 +13,23 @@ namespace QRCodePrint
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
+                           "~/Scripts/WebForms/WebForms.js",
+                           "~/Scripts/WebForms/WebUIValidation.js",
+                           "~/Scripts/WebForms/MenuStandards.js",
+                           "~/Scripts/WebForms/Focus.js",
+                           "~/Scripts/WebForms/GridView.js",
+                           "~/Scripts/WebForms/DetailsView.js",
+                           "~/Scripts/WebForms/TreeView.js",
+                           "~/Scripts/WebForms/WebParts.js"));
+            bundles.Add(new ScriptBundle("~/easyuijs").Include(
+                            "~/Scripts/jquery.easyui-1.4.5.js",
+                            "~/Scripts/locale/easyui-lang-zh_CN.js"));
+            bundles.Add(new StyleBundle("~/easyuicss").Include(
+                "~/Content/themes/default/easyui.css",
+                "~/Content/themes/icon.css",
+                "~/Content/themes/color.css"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",
                             "~/Scripts/WebForms/WebUIValidation.js",
                             "~/Scripts/WebForms/MenuStandards.js",

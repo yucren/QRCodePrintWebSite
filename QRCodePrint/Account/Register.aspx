@@ -10,6 +10,16 @@
         <h4>创建新帐户</h4>
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
+         <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">用户名</asp:Label> 
+                        <div class="col-md-10">
+                          <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
+                                CssClass="text-danger" ErrorMessage="“用户名”字段是必填字段。" />
+
+
+                        </div>
+                    </div>
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">电子邮件</asp:Label>
             <div class="col-md-10">

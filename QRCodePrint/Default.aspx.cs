@@ -11,6 +11,14 @@ namespace QRCodePrint
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            bool auth = User.Identity.IsAuthenticated;
+            if (!auth)
+            {
+                Response.Redirect("~/account/login.aspx?ReturnUrl=" + Page.Request.Url, true);
+
+            }
+
+            //     Session["name"] = "yuchengren";
 
         }
     }

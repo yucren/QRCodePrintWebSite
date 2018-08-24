@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -8,21 +9,61 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using QRCodePrint.Models;
 
+using System.Net.Mail;
+
 namespace QRCodePrint
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        IOwinContext context;
+        public EmailService(IOwinContext context)
         {
-            // 在此处插入电子邮件服务可发送电子邮件。
+            this.context = context;
+        }
+
+        public  Task SendAsync(IdentityMessage message)
+        {
+            SmtpClient smtpClient = new SmtpClient("smtp.139.com");
+            smtpClient.UseDefaultCredentials = false;
+
+            smtpClient.Credentials = new NetworkCredential() { UserName = "18721600247@139.com", Password = "ycr111450" };
+            MailMessage mailMessage = new MailMessage("18721600247@139.com", "539928505@qq.com")
+            {
+
+                Sender = new MailAddress("18721600247@139.com", "yuchengren"),
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true,
+                Priority = MailPriority.High
+            };
+
+            //  mailMessage.To.Add(new MailAddress("539928505@qq.com"));
+            mailMessage.To.Add(new MailAddress("928184371@qq.com"));
+            //   mailMessage.To.Add(message.Destination);
+
+            smtpClient.SendAsync(mailMessage,context);
+            smtpClient.SendCompleted += SmtpClient_SendCompleted;
+      
+
+
             return Task.FromResult(0);
         }
-    }
+
+        private void SmtpClient_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            
+             
+
+            }
+        }
+    
+    
 
     public class SmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
+            
             // 在此处插入 SMS 服务可发送短信。
             return Task.FromResult(0);
         }
@@ -38,6 +79,7 @@ namespace QRCodePrint
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
+            
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
@@ -49,11 +91,11 @@ namespace QRCodePrint
             // 配置密码的验证逻辑
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequiredLength = 8,
+             //   RequireNonLetterOrDigit = true,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+              //  RequireUppercase = true,
             };
 
             // 注册双重身份验证提供程序。此应用程序使用手机和电子邮件作为接收用于验证用户的代码的一个步骤
@@ -72,8 +114,8 @@ namespace QRCodePrint
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
-
-            manager.EmailService = new EmailService();
+            manager.EmailService = new EmailService(context); 
+            
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
