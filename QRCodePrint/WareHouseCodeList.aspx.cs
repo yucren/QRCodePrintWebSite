@@ -8,14 +8,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using QRCodePrint.Models;
 using System.Linq.Expressions;
-using System.Collections;
 
 namespace QRCodePrint
 {
-    public partial class WareHouseCode : System.Web.UI.Page
+    public partial class WareHouseCodeList : System.Web.UI.Page
     {
         private string json;
-        private IEnumerable itemMasters;
+        private ItemMaster[] itemMasters;
         protected void Page_Load(object sender, EventArgs e)
         {
             bool auth = User.Identity.IsAuthenticated;
@@ -23,39 +22,18 @@ namespace QRCodePrint
             {
                 Response.Redirect("~/account/login.aspx?ReturnUrl=" + Page.Request.Url, true);
 
-            }
+            }                      
 
-            if (Request["jsonInput"] !=null)
-            {
-                json = Request["jsonInput"];
-                itemMasters = JsonConvert.DeserializeObject(json, typeof(ItemMaster[])) as ItemMaster[];
-
-
-                Session["json"] = json;
-                
-
-               
-            }
-            else 
-            {
                 json = Request["rePrint"];
 
-                QRCodeList[] qRCodeLists  = JsonConvert.DeserializeObject(json, typeof(QRCodeList[])) as QRCodeList[];
-             itemMasters =     from p in qRCodeLists
-                select new ItemMaster
-                {
-                     供应商编码= p.SupplierCode,
-                     品名=p.ItemName,
-                     序列号=p.SerialNo,
-                     料号=p.ItemMaster
+                Session["json"] = json;
 
+                itemMasters = JsonConvert.DeserializeObject(json, typeof(ItemMaster[])) as ItemMaster[];
 
-                };
-
-            }
-
-            ListView1.DataSource = itemMasters;
+                ListView1.DataSource = itemMasters;
                 ListView1.DataBind();
+          
+            
             
            
             //var username = Request["username"];

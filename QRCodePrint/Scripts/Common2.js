@@ -290,12 +290,12 @@ var action = {
 };
 function PrintQRCode()
 {
-   var json= $('#box').datagrid('getSelections');    
-   console.log(json);
-    $('#jsonInput').val(JSON.stringify(json));
+  // var json= $('#box').datagrid('getSelections');    
+  // console.log(json);
+  //  $('#jsonInput').val(JSON.stringify(json));
 
-  //  console.log($('#jsonInput').val());
-    var jsonform = document.getElementById('jsonForm').submit();
+  ////  console.log($('#jsonInput').val());
+  //  var jsonform = document.getElementById('jsonForm').submit();
 
   //  console.log(jsonform);
 
@@ -319,7 +319,43 @@ function PrintQRCode()
 
 
  //   })
+
+
+
+    var rows = $('#box').datagrid("getSelections");
+    var json = JSON.stringify(rows);
+    $.post(url = 'WareHouseCode', data = { jsonInput: json }, success = function (data) {
+        //$('#win').window({
+
+        console.log(data);
+
+        //    content: data,
+        //});
+        $('#win').window({
+            width: 600,
+            height: 400,
+            modal: true,
+            zIndex: 100000,
+            content: $(data).find("#codeprint").prop("outerHTML"),
+            tools: [{
+                iconCls: "icon-print",
+                handler: function () {
+
+
+                    printThis();
+                }
+
+
+            }],
+
+        });
+
+    });
+
+
 };
+
+
 
 function getData() {
     var rows = [];

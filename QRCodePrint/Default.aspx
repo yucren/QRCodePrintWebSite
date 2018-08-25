@@ -23,14 +23,26 @@
         <a href="#" style="margin-left: 20px" class="easyui-linkbutton" data-options="iconCls:'icon-print'" onclick="PrintQRCode()">二维码打印</a>
 
     </form>
+        <div id="win">
+
+
+
+        </div>
    
 
 </div>
    <script>
        $(function () {
+             
+           window.onafterprint = function () {
+
+             
+              // $('#win').window("close");
+
+           };
 
            $('#printList').combogrid({    
-               panelWidth: 650,
+               panelWidth: 800,
                panelHeight:500,
                
    // value:'006',  
@@ -43,20 +55,71 @@
                    action: "getList",
 
                },
-               mode:"remote",
+               mode: "remote",
+               rownumbers: true,
+               pagination: true,
+               multiple: true,
+               toolbar: [{
+                   iconCls: 'icon-print', handler: function () {
+
+                       $('#printList').combogrid("hidePanel");
+                   
+
+
+                       var rows =$('#printList').combogrid("grid").datagrid("getSelections");
+                       var json = JSON.stringify(rows);
+                       $.post(url = 'WareHouseCode', data = { rePrint: json }, success = function (data) {
+                           //$('#win').window({
+
+                           console.log(data);
+
+                           //    content: data,
+                           //});
+                            $('#win').window({ 
+                    width:600,    
+                    height:400,    
+                    modal: true,
+                                zIndex: 100000,
+                                content: $(data).find("#codeprint").prop("outerHTML"),
+                                tools: [{
+                                    iconCls: "icon-print",
+                                    handler: function () {
+
+
+                                        printThis();
+                                    }
+
+
+                                }],
+                       
+                });  
+                         
+                       });
+                       
+
+                   }
+               }],
              
-    columns:[[    
+               columns: [[
+        {field:"Id",title:"Id",checkbox:true},
         { field: 'ItemMaster', title: '料号', width: 100 }, 
        {field:'ItemName',title:'品名',width:100},
         {field:'SerialNo',title:'序列号',width:100},    
         {field:'SupplierCode',title:'供应商编码',width:70},    
         { field: 'UserName', title: '用户名', width: 100 },
-         {field:'PrintDate',title:'打印日期',width:100},
+                   { field: 'PrintDate', title: '打印日期', width: 150 },
+                   //{
+                   //    field: "modifyTool", title: "操作", formatter: function (value, row, index) {
+
+                   //        return "<a href='#' onclick='alert(\"goodluck\");'>修改</a>";
+                   //    }
+                   //},
+
                ]],
                onShowPanel: function () {
-
-
+                  
                    $('#printList').combogrid("grid").datagrid("load");
+
 
                },
 });  
@@ -112,7 +175,25 @@
 
 
        };
-
+       function printThis() {
+var el = document.getElementById("codeprint");
+var iframe = document.createElement('IFRAME');
+var doc = null;
+iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:500px;top:500px;');
+document.body.appendChild(iframe);
+doc = iframe.contentWindow.document;
+// 引入打印的专有CSS样式，根据实际修改
+// doc.write("<LINK rel="stylesheet" type="text/css" href="css/print.css">");
+doc.write('<div>' + el.innerHTML + '</div>');
+doc.close();
+// 获取iframe的焦点，从iframe开始打印
+iframe.contentWindow.focus();
+iframe.contentWindow.print();
+if (navigator.userAgent.indexOf("MSIE") > 0)
+{
+    document.body.removeChild(iframe);
+}
+       };
       
    </script>
 </asp:Content>

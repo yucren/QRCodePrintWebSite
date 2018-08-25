@@ -10,7 +10,7 @@
 namespace QRCodePrint {
     
     
-    public partial class WebForm1 {
+    public partial class WareHouseCode {
         
         /// <summary>
         /// form1 控件。

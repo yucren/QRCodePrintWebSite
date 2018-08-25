@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="WareHouseCode.aspx.cs" Inherits="QRCodePrint.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="WareHouseCode.aspx.cs" Inherits="QRCodePrint.WareHouseCode" %>
 
 <!DOCTYPE html>
 
@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>二维码打印列表</title>
     <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/jquery.easyui-1.4.5.min.js"></script>
      <script type="text/javascript">            
          $(function () {
              window.onbeforeprint = function () {
@@ -48,6 +49,7 @@
             document.body.innerHTML = headstr + printData + footstr;
             window.print();
             document.body.innerHTML = oldstr;
+            $.parser.parse();
             //this.window.close();
             return true;
           
@@ -63,7 +65,41 @@
           
 
     </script>
-    <style type="text/css" media="print">
+    
+</head>
+<body>
+
+    <form id="form1" runat="server" autocomplete="on">
+        <div class="noprint">
+        <input type="button" value="打印" onclick="doPrint()" />
+            <asp:Button   ID="PrintButton" runat="server" Text="二维码打印" OnClick="PrintButton_Click" />    
+    </div>
+    <div id="codeprint"><%--webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);--%>
+        <asp:ListView ID="ListView1" runat="server">
+            <ItemTemplate>
+                <div style="height:100px;overflow:hidden">
+                <table style="border: 1px solid black; border-radius: 3px; width:140px; height:85px; text-align: center; font-size: 7px;">
+                    <tr>
+                        <td>
+                            <img src="tools/BarCode.ashx?id=<%#Eval("fInfo") %>" alt="" style="height: 85px; float: right;" />
+                        </td>
+                        <td>
+                            <div style="text-align: left;height:85px; overflow:hidden;word-break: break-all;margin-left:-3px;" >
+      
+                                <div class="ftitle" style="height:20px;word-break: break-all;margin-top: 0px;">[<%#Eval("料号") %>]</div>
+    
+                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("品名")%>]</div>
+                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("供应商编码")%>]</div>
+                                <span>SN:</span>
+                                <div class="ftitle" style="height:10px;width:auto;word-break: break-all"><%#Eval("序列号").ToString().Length<=0 ?"N/A":Eval("序列号") %></div>
+                            </div>    
+                        </td>
+                    </tr>                
+                </table>
+               </div>
+            </ItemTemplate>
+        </asp:ListView>
+        <style type="text/css" media="print">
         html,body{
 
             margin:0;
@@ -105,39 +141,6 @@
             display: none;
         }
     </style>
-</head>
-<body>
-
-    <form id="form1" runat="server" autocomplete="on">
-        <div class="noprint">
-        <input type="button" value="打印" onclick="doPrint()" />
-            <asp:Button   ID="PrintButton" runat="server" Text="二维码打印" OnClick="PrintButton_Click" />    
-    </div>
-    <div id="codeprint"><%--webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);--%>
-        <asp:ListView ID="ListView1" runat="server">
-            <ItemTemplate>
-                <div style="height:100px;overflow:hidden">
-                <table style="border: 1px solid black; border-radius: 3px; width:140px; height:85px; text-align: center; font-size: 7px;">
-                    <tr>
-                        <td>
-                            <img src="tools/BarCode.ashx?id=<%#Eval("fInfo") %>" alt="" style="height: 85px; float: right;" />
-                        </td>
-                        <td>
-                            <div style="text-align: left;height:85px; overflow:hidden;word-break: break-all;margin-left:-3px;" >
-      
-                                <div class="ftitle" style="height:20px;word-break: break-all;margin-top: 0px;">[<%#Eval("料号") %>]</div>
-    
-                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("品名")%>]</div>
-                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("供应商编码")%>]</div>
-                                <span>SN:</span>
-                                <div class="ftitle" style="height:10px;width:auto;word-break: break-all"><%#Eval("序列号").ToString().Length<=0 ?"N/A":Eval("序列号") %></div>
-                            </div>    
-                        </td>
-                    </tr>                
-                </table>
-               </div>
-            </ItemTemplate>
-        </asp:ListView>
     </div>
     </form>
 </body>

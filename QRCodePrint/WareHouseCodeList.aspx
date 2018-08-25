@@ -1,11 +1,43 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WareHouseCode1.aspx.cs" Inherits="QRCodePrint.WareHouseCode" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeBehind="WareHouseCodeList.aspx.cs" Inherits="QRCodePrint.WareHouseCodeList" %>
 
-  
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>二维码打印列表</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
      <script type="text/javascript">            
-        
+         $(function () {
+             window.onbeforeprint = function () {
+                 //   $('#PrintButton').click();
+                 //alert("打印完成");
+
+             };
+
+
+             window.onafterprint = function () {
+
+                 $.post("SavePrintList.ashx", { action: "print" }, function (data) {
+
+                     $.messager.show({
+                         title: "温馨提示",
+                         msg: data,
+                         style: {
+                             left: 500,
+
+                             top: 300,
+
+
+                         }
+                     });
+
+                     //  alert("打印完成");
+                 });
+
+
+             };
+         });
         //打印
         function printdiv(printpage) {
             var headstr = "<html><head><title";
@@ -18,15 +50,13 @@
             document.body.innerHTML = oldstr;
             //this.window.close();
             return true;
+          
          };
         //打印完成后,置打印标志位
-        function doPrint() {
+         function doPrint() {
+          //  $('#PrintButton').click();
             printdiv('codeprint');
-          
-
-
-
-            });
+            
          
          };
         
@@ -34,13 +64,9 @@
 
     </script>
     <style type="text/css" media="print">
-
-       
-
         html,body{
 
             margin:0;
-            
             /*margin-top:5px;
             margin-left:3px;*/
 
@@ -52,23 +78,19 @@
         }
         table{
             max-width:100%;
-            
-             /*page-break-after:auto;
-          page-break-inside:auto;
-          page-break-before:auto;*/
 
         }
         /*table {
           page-break-after:auto;
           page-break-inside:auto;
           page-break-before:auto;
-     }*/
-    /*tr {
+     }
+    tr {
           page-break-after:auto;
           page-break-inside:auto;
           page-break-before:auto;
      }*/
-        .noprint,footer,#ctl01  {
+        .noprint, #PrintButton {
             display: none;
         }
         .ftitle
@@ -77,8 +99,19 @@
             overflow:hidden;
         }       
         </style>
-     <div class="noprint">
-        <input type="button" value="打印" onclick="doPrint()" />        
+    <style media="screen">
+
+         #PrintButton {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="form1" runat="server" autocomplete="on">
+        <div class="noprint">
+        <input type="button" value="打印" onclick="doPrint()" />
+            <asp:Button   ID="PrintButton" runat="server" Text="二维码打印" OnClick="PrintButton_Click" />    
     </div>
     <div id="codeprint"><%--webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);--%>
         <asp:ListView ID="ListView1" runat="server">
@@ -92,12 +125,12 @@
                         <td>
                             <div style="text-align: left;height:85px; overflow:hidden;word-break: break-all;margin-left:-3px;" >
       
-                                <div class="ftitle" style="height:20px;word-break: break-all;margin-top: 0px;">[<%#Eval("料号") %>]</div>
+                                <div class="ftitle" style="height:20px;word-break: break-all;margin-top: 0px;">[<%#Eval("ItemMaster") %>]</div>
     
-                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("品名")%>]</div>
-                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("供应商编码")%>]</div>
+                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("ItemName")%>]</div>
+                                <div class="ftitle" style="height:20px;width:auto;word-break: break-all;overflow-y:hidden">[<%#Eval("SupplierCode")%>]</div>
                                 <span>SN:</span>
-                                <div class="ftitle" style="height:10px;width:auto;word-break: break-all"><%#Eval("序列号").ToString().Length<=0 ?"N/A":Eval("序列号") %></div>
+                                <div class="ftitle" style="height:10px;width:auto;word-break: break-all"><%#Eval("SerialNo").ToString().Length<=0 ?"N/A":Eval("SerialNo") %></div>
                             </div>    
                         </td>
                     </tr>                
@@ -106,5 +139,6 @@
             </ItemTemplate>
         </asp:ListView>
     </div>
-   
-</asp:Content>
+    </form>
+</body>
+</html>

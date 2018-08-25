@@ -604,6 +604,7 @@
     <Content Include="Content\themes\material\images\Thumbs.db" />
     <Content Include="ReadExcel.ashx" />
     <Content Include="ThoughtWorks.QRCode.dll" />
+    <Content Include="WareHouseCodeList.aspx" />
     <Content Include="WareHouseCode.aspx" />
     <Content Include="SavePrintList.ashx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -667,7 +668,6 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="WareHouseCode1.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -839,19 +839,19 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WareHouseCodeList.aspx.cs">
+      <DependentUpon>WareHouseCodeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WareHouseCodeList.aspx.designer.cs">
+      <DependentUpon>WareHouseCodeList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WareHouseCode.aspx.cs">
       <DependentUpon>WareHouseCode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WareHouseCode.aspx.designer.cs">
       <DependentUpon>WareHouseCode.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WareHouseCode1.aspx.cs">
-      <DependentUpon>WareHouseCode1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WareHouseCode1.aspx.designer.cs">
-      <DependentUpon>WareHouseCode1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
