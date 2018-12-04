@@ -10,6 +10,7 @@ using QRCodePrint.Models;
 using System.Linq.Expressions;
 using System.Collections;
 
+
 namespace QRCodePrint
 {
     public partial class WareHouseCode : System.Web.UI.Page
@@ -18,12 +19,12 @@ namespace QRCodePrint
         private IEnumerable itemMasters;
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool auth = User.Identity.IsAuthenticated;
-            if (!auth)
-            {
-                Response.Redirect("~/account/login.aspx?ReturnUrl=" + Page.Request.Url, true);
+            //bool auth = User.Identity.IsAuthenticated;
+            //if (!auth)
+            //{
+            //    Response.Redirect("~/account/login.aspx?ReturnUrl=" + Page.Request.Url, true);
 
-            }
+            //}
 
             if (Request["jsonInput"] !=null)
             {

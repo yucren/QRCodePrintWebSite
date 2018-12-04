@@ -8,6 +8,7 @@
     <title>二维码打印列表</title>
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="Scripts/jquery.easyui-1.4.5.min.js"></script>
+    <script src="Scripts/PrintArea-master/js/jquery.printarea.js"></script>
      <script type="text/javascript">            
          $(function () {
              window.onbeforeprint = function () {
@@ -68,12 +69,13 @@
     
 </head>
 <body>
-
+    
     <form id="form1" runat="server" autocomplete="on">
         <div class="noprint">
         <input type="button" value="打印" onclick="doPrint()" />
             <asp:Button   ID="PrintButton" runat="server" Text="二维码打印" OnClick="PrintButton_Click" />    
     </div>
+         
     <div id="codeprint"><%--webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg);--%>
         <asp:ListView ID="ListView1" runat="server">
             <ItemTemplate>
@@ -142,6 +144,7 @@
         }
     </style>
     </div>
+        
     </form>
 </body>
 </html>

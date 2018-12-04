@@ -47,6 +47,7 @@ namespace QRCodePrint
             // 此选项类似于在登录时提供的“记住我”选项。
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
+            app.UseWeChatAuthentication(appId: "wx5cab94d345f1e3fb", appSecret: "eecc72415e5e4928365a03241f17a976");
             // 取消注释以下行可允许使用第三方登录提供程序登录
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",

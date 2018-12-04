@@ -11,15 +11,35 @@ namespace QRCodePrint
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool auth = User.Identity.IsAuthenticated;
+            if (!Request.Browser.Browser.Contains("Firefox"))
+            {
+                Response.Redirect("~/Tools/error.html");
+            }
+            else
+            {           
+
+                bool auth =User.Identity.IsAuthenticated;
             if (!auth)
             {
-                Response.Redirect("~/account/login.aspx?ReturnUrl=" + Page.Request.Url, true);
+                HttpCookie valid = new HttpCookie("Valid")
+                {
+                    Value = "true",
 
+                };
+
+                Response.SetCookie(valid);
+
+               
+            }
+            else
+            {
+                Response.Cookies["Valid"].Expires = DateTime.Now.AddMinutes(-5);
             }
 
-            //     Session["name"] = "yuchengren";
 
+                //     Session["name"] = "yuchengren";
+
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - 中国龙工二维码打印平台</title>
+    <title><%: Page.Title %> - 二维码打印平台</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -20,6 +20,8 @@
             padding:0;
             width:100%;
             height:100%;
+            max-height:100%;
+            
         }
 
 
@@ -60,13 +62,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">中国龙工二维码打印平台</a>
+                    <a class="navbar-brand" runat="server" href="~/">二维码打印平台</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                       <%--  <li><a runat="server" href="~/">主页</a></li>--%>
                        <%-- <li><a runat="server" href="~/About">关于</a></li>--%>
                         <li><a runat="server" href="~/Contact">联系我们</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                      <%--  <li><a runat="server" href="~/">主页</a></li>--%>
+                       <%-- <li><a runat="server" href="~/About">关于</a></li>--%>
+                        <li><a runat="server" href="~/Contact">帮助</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -94,24 +101,32 @@
          
         </div>
     </form>
-      <div id="goodluck" class="container body-content" >
+      <div id="goodluck"    class="good container body-content" >
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer style="position:relative;bottom:10px">
-                <p>&copy; <%: DateTime.Now.Year %> - 中国龙工控股有限公司</p>
+                <p>&copy; <%: DateTime.Now.Year  %> - 龙工信息管理部俞程仁</p>
             </footer>
         </div>
     <style>
         @media screen  {
 
-            #goodluck{
+            .good{
 
                 padding-top:50px;
                 width:100%;
                 height:100%;
             }
         }
+        
+         .panel.window{
+             max-width:100%;
+
+
+         }
+
+     
 
 
     </style>   

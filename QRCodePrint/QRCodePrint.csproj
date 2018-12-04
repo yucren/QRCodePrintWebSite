@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QRCodePrint</RootNamespace>
     <AssemblyName>QRCodePrint</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +35,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,22 +47,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Security.WeChat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.WeChat.1.0.0.1\lib\net45\Microsoft.Owin.Security.WeChat.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -88,6 +95,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="ThoughtWorks.QRCode, Version=1.0.2774.19990, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\ThoughtWorks.QRCode.dll</HintPath>
@@ -600,13 +608,118 @@
     <Content Include="Account\Web.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\themes\material\images\Thumbs.db" />
-    <Content Include="ReadExcel.ashx" />
+    <Content Include="jquery-easyui-edatagrid\editable-datagrid.html" />
+    <Content Include="jquery-easyui-edatagrid\jquery.edatagrid.js" />
+    <Content Include="Lodop6.223_Clodop3.046\CLodop_Setup_for_Win32NT.exe" />
+    <Content Include="Lodop6.223_Clodop3.046\install_lodop32.exe" />
+    <Content Include="Lodop6.223_Clodop3.046\install_lodop64.exe" />
+    <Content Include="Lodop6.223_Clodop3.046\LodopFuncs.js" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSampIndex.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample1.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample10.css" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample10.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample10.js" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample11.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample12.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample13.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample14.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample15.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample16.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample17.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample18.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample19.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample2.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample20.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample21.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample22.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample23.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample24.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample25.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample26.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample27.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample28.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample29.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample3.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample30.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample31.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample32.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample33.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample34.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample35.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample36.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample37.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample38.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample39.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample4.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample40.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample41.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample42.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample43.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample44.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample45.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample46.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample47.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample48.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample49.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample5.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample50.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample51.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample6.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample7.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample8.html" />
+    <Content Include="Lodop6.223_Clodop3.046\PrintSample9.html" />
+    <Content Include="Scripts\GQrCode.js" />
+    <Content Include="Scripts\PrintArea-master\.gitignore" />
+    <Content Include="Scripts\PrintArea-master\css\jquery.printarea.css" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\animated-overlay.gif" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\jquery-ui-1.10.4.custom.css" />
+    <Content Include="Scripts\PrintArea-master\demo\css\ui-lightness\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="Scripts\PrintArea-master\demo\FoesEnd.jpg" />
+    <Content Include="Scripts\PrintArea-master\demo\PrintArea.html" />
+    <Content Include="Scripts\PrintArea-master\js\jquery.printarea.js" />
     <Content Include="ThoughtWorks.QRCode.dll" />
+    <Content Include="Tools\error.html" />
     <Content Include="WareHouseCodeList.aspx" />
     <Content Include="WareHouseCode.aspx" />
     <Content Include="SavePrintList.ashx" />
+    <Content Include="ReadExcel.ashx" />
+    <Content Include="Models\ItemMasterFinder.xsc">
+      <DependentUpon>ItemMasterFinder.xsd</DependentUpon>
+    </Content>
+    <Content Include="Models\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Content>
+    <Content Include="jquery-easyui-edatagrid\datagrid_data.json" />
+    <None Include="Models\ItemMasterFinder.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemMasterFinder.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\ItemMasterFinder.xss">
+      <DependentUpon>ItemMasterFinder.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -807,13 +920,41 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="getItemmaster.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Base_Organization.cs" />
+    <Compile Include="Models\Base_Organization_Trl.cs" />
+    <Compile Include="Models\Base_UOM.cs" />
+    <Compile Include="Models\Base_UOM_Trl.cs" />
+    <Compile Include="Models\CBO_InventoryInfo.cs" />
+    <Compile Include="Models\CBO_ItemMaster.cs" />
+    <Compile Include="Models\CBO_Supplier.cs" />
+    <Compile Include="Models\CBO_Supplier_Trl.cs" />
+    <Compile Include="Models\CBO_Wh.cs" />
+    <Compile Include="Models\CBO_Wh_Trl.cs" />
+    <Compile Include="Models\DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ItemMaster.cs" />
+    <Compile Include="Models\ItemMasterFinder.cs">
+      <DependentUpon>ItemMasterFinder.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemMasterFinder.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemMasterFinder.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\QrCodeModel.cs" />
+    <Compile Include="Models\U9Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadExcel.ashx.cs">
+      <DependentUpon>ReadExcel.ashx</DependentUpon>
+    </Compile>
     <Compile Include="SavePrintList.ashx.cs">
       <DependentUpon>SavePrintList.ashx</DependentUpon>
     </Compile>
@@ -832,6 +973,12 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Tools\GetItemmaster.ashx.cs">
+      <DependentUpon>GetItemmaster.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\GetUseableKanban.ashx.cs">
+      <DependentUpon>GetUseableKanban.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -863,12 +1010,52 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Tools\BarCode.ashx" />
+    <Content Include="Scripts\PrintArea-master\.jshintrc" />
+    <Content Include="Scripts\PrintArea-master\bower.json" />
+    <Content Include="Scripts\PrintArea-master\CHANGELOG" />
+    <Content Include="Scripts\PrintArea-master\LICENSE" />
+    <Content Include="Scripts\PrintArea-master\PrintArea.jquery.json" />
+    <Content Include="Scripts\PrintArea-master\README.md" />
+    <Content Include="Tools\GetItemmaster.ashx" />
+    <Content Include="Tools\GetUseableKanban.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -885,7 +1072,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60668</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60668/</IISUrl>
+          <IISUrl>http://localhost:8080/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

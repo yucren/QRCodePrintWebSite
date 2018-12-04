@@ -1,8 +1,10 @@
 ﻿using LonKing.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using QRCodePrint.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
@@ -17,9 +19,31 @@ namespace QRCodePrint
 
         public void ProcessRequest(HttpContext context)
         {
-            if (context.Request["action"] == "print")
+            bool auth = context.User.Identity.IsAuthenticated;
+            if (!auth)
+            {
+                context.Response.Redirect("~/account/login.aspx?ReturnUrl=" + context.Request.Url, true);
+
+            }
+            else
             {
 
+            
+
+
+            IsoDateTimeConverter isoDateTime = new IsoDateTimeConverter()
+            {
+
+                DateTimeFormat = "yyyy-MM-dd HH:mm:ss",
+                Culture = new System.Globalization.CultureInfo("zh")
+
+
+            };
+
+
+            if (context.Request["action"] == "print")
+            {
+                
                 var json = context.Session["json"].ToString();
                 if (context.Session["json"] != null)
                 {
@@ -62,13 +86,13 @@ namespace QRCodePrint
             {
                 try
                 {
+                    var page = Convert.ToInt32(context.Request["page"]);
+                    var   rows = Convert.ToInt32(context.Request["rows"]);
                     using (QrCodeModel qr = new QrCodeModel())
                     {
+                        var qRjson = qr.QRCodeLists.OrderByDescending(m=>m.PrintDate).Skip(rows*(page -1)).Take(rows);
 
-
-                        var qRjson = qr.QRCodeLists.OrderByDescending(m=>m.PrintDate).Take(100);
-
-                        var json = JsonConvert.SerializeObject(qRjson);
+                        var json = "{\"total\":" + qr.QRCodeLists.Count() + ",\"rows\":" + JsonConvert.SerializeObject(qRjson, isoDateTime) + "}";
                         context.Response.Write(json);
                     }
                 }
@@ -87,19 +111,30 @@ namespace QRCodePrint
        
                     using (QrCodeModel qr = new QrCodeModel())
                     {
+                        qr.Database.Log = (x) =>
+                        {
+                            File.AppendAllText(@"c:\qrcodewebLog.txt", x);
 
 
-                        var qRjson = qr.QRCodeLists.Where(m=> m.ItemMaster.Contains(q)) ;
 
-                        var json = JsonConvert.SerializeObject(qRjson);
+                        };
+                        var qAarry = q.Split(',');
+                        var qRjson = qr.QRCodeLists.Where(x=>qAarry.Contains(x.ItemMaster)).OrderByDescending(m=>m.PrintDate) ;
+
+                        //var qRjson = qr.QRCodeLists.Where(m=> m.ItemMaster.Contains(q)).OrderByDescending(m=>m.PrintDate) ;
+
+                        var json = "{\"total\":" + qr.QRCodeLists.Count() + ",\"rows\":" + JsonConvert.SerializeObject(qRjson,isoDateTime) + "}";
                         context.Response.Write(json);
+                      
+                        
+
                     }
                              
 
 
             }
-           
-           
+
+            }
         }
 
         public bool IsReusable

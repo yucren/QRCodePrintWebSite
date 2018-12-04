@@ -3,6 +3,7 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+   
     <h2><%: Title %>。</h2>
 
     <div class="row">
@@ -20,7 +21,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">用户名</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" />
+                            <asp:TextBox runat="server"  ID="Email" CssClass="form-control" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                                 CssClass="text-danger" ErrorMessage="“用户名”字段是必填字段。" />
                         </div>
@@ -62,5 +63,8 @@
                 <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
             </section>
         </div>
-    </div>
+    </div>   
+    
 </asp:Content>
+
+

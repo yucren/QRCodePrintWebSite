@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<family xmlns="http://www.lonking.cn/family" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="family.xsd" >
+  <person>
+    <name>yuchengren</name>
+    <age>30r</age>
+    <birthday>1990-01-01</birthday>
+    <heigth>173</heigth>
+  </person>
+  <person>
+    <name>youmeixiang</name>
+    <age>27</age>
+    <birthday>1991-06-14</birthday>
+    <heigth>155</heigth>
+  </person>
+  <person>
+    <name>yujiaming</name>
+    <age>4</age>
+    <birthday>2014-03-20</birthday>
+    <heigth>94</heigth>
+  </person>
+</family>
